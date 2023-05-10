@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 
-function TodoCard({title,desc, id, etitle, edesc, edit, eid, edeadline, index, deadline}) {
+function Product({title,desc, id, etitle, edesc, edit, eid, eupload, index, upload}) {
     const bg = ['#0d6efd','#6f42c1','#dc3545','#fd7e14','#ffc107','#198754']
     const handleEdit = () =>{
         etitle(title)
         edesc(desc)
-        edeadline(deadline)
+        eupload(upload)
         edit(false)
         eid(id)
         console.log(id);
@@ -22,7 +22,7 @@ function TodoCard({title,desc, id, etitle, edesc, edit, eid, edeadline, index, d
             url: `http://localhost:4000/delete/${id}`,
           }).then(
             (res)=>{
-              localStorage.setItem("todos", JSON.stringify(res.data));
+              localStorage.setItem("products", JSON.stringify(res.data));
           }
           ).catch((err)=>{
             console.log(err)
@@ -32,14 +32,14 @@ function TodoCard({title,desc, id, etitle, edesc, edit, eid, edeadline, index, d
 
     const classs = `card shadow todo-${index%6}`
   return (
-    <div className={classs}>
-    <div className="card-body">
+    <div className={classs} style={{width:"100%",height:"100%"}}>
+    <div className="card-body" >
       <span className="todo-title mb-5">{title}</span>
       <hr className="todo-line" />
       <p className="my-3">{desc}</p>
-      <div><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
-  <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z"/>
-</svg><span className='mx-3'>{String(deadline).slice(0,10)}</span></div>
+      <div>
+        <img src={upload} style={{objectFit:"cover", width:"100%", height:"100%"}} alt="this is img" />
+      </div>
       <hr className="todo-line" />
       <div className="d-flex justify-content-end">
         <div className="mx-4 pointer" onClick={handleEdit}>
@@ -77,4 +77,4 @@ function TodoCard({title,desc, id, etitle, edesc, edit, eid, edeadline, index, d
   )
 }
 
-export default TodoCard
+export default Product;

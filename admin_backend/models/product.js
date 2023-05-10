@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const todoSchema = new Schema({
+const productSchema = new Schema({
   title:String,
   description:String,
-  deadline:Date
+  upload:String
 });
 
-module.exports = mongoose.model("Todo", todoSchema);
+module.exports = mongoose.model("Product", productSchema);
